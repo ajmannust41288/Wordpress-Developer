@@ -1,0 +1,293 @@
+/*
+Theme Name: Web Startup Agency
+Theme URI: https://www.theclassictemplates.com/themes/free-web-agency-wordpress-theme/
+Author: classictemplate
+Author URI: https://www.theclassictemplates.com/
+Description: Web Startup Agency is a modern and dynamic WordPress theme designed specifically for web startup agencies, digital marketing firms, and technology companies. It is a great solution for such agencies to create a stunning online presence without hiring a web developer. The theme offers a visually stunning and contemporary design that reflects the cutting-edge nature of startup agencies. With its comprehensive features and sleek design, this theme provides an ideal platform to showcase services, highlight success stories, and attract potential clients. The provides a range of visually appealing layouts, sliders, and sections to present services, team members, and client testimonials in an engaging and professional manner. The theme's clean and sleek design elements create a sense of credibility and innovation, helping to establish trust with potential clients. It also provides essential features to enhance the user experience and streamline the website management process. The theme supports integration with popular plugins, allowing agencies to add interactive elements such as contact forms, social media feeds, and portfolio showcases. It also offers customization options to personalize colors, fonts, and layouts, enabling agencies to align the website with their brand identity. Additionally, the Web Startup Agency WordPress theme is fully responsive and mobile-friendly, ensuring that the website looks great and functions seamlessly on all devices. With a growing number of users accessing the internet through smartphones and tablets, having a mobile-friendly website is crucial for reaching a wider audience and maximizing engagement opportunities.
+Template: smallbiz-startup
+Version: 1.0.1
+Tested up to: 6.2
+Requires PHP: 7.2
+Requires at least: 5.0
+License: GNU General Public License
+License URI: http://www.gnu.org/licenses/gpl.html
+Text Domain: web-startup-agency
+Tags: blog, e-commerce, portfolio, one-column, two-columns, left-sidebar, right-sidebar, custom-logo, full-width-template, footer-widgets, featured-images, custom-colors, editor-style, wide-blocks, block-styles, custom-header, custom-background, custom-menu, sticky-post, threaded-comments, theme-options, rtl-language-support
+
+Web Startup Agency WordPress Theme has been created by classictemplate (theclassictemplates.com), 2023.
+Web Startup Agency WordPress Theme is released under the terms of GNU GPL
+
+Web Startup Agency WordPress Theme is child theme of Smallbiz Startup WordPress Theme, Copyright 2023 classictemplate (theclassictemplates.com)
+Smallbiz Startup WordPress Theme is distributed under the terms of the GNU GPL
+*/
+body{
+  font-family: 'poppins', sans-serif;
+  overflow-x: hidden !important;
+}
+a, a:hover{
+	text-decoration: none;
+	color:#f9755c;
+}
+.woocommerce-message::before, .main-nav a:hover, a:hover,p.site-title a:hover, h1.site-title a:hover, .ftr-4-box h5 span, .listarticle h2 a:hover, #sidebar ul li a:hover, .ftr-4-box ul li a:hover, .ftr-4-box ul li.current_page_item a, .social-icons i:hover, .main-nav ul ul a:hover{
+	color: #f9755c;
+}
+.listarticle a:focus, .wp-block-button a:focus{
+  outline: 3px solid #f9755c !important;
+}
+/*header*/
+.logo a{
+  color: #000;
+  font-weight: 600;
+}
+.main-nav a:hover{
+  color: #f9755c;
+}
+.main-menu {
+  display: inline-block;
+  width: 70%;
+}
+.page-template-template-home-page .header.sticky-head, .sticky-head{
+  background-color: #000;
+}
+.sticky-head .main-nav a{
+  color: #fff;
+}
+.page-template-template-home-page .main-nav a{
+  color: #fff;
+}
+.main-nav a{
+  color: #000;
+}
+span.onsale, .page-template-template-home-page .contact-us a, .contact-us a, .pagemore a, .serv-btn a, .woocommerce ul.products li.product .button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce a.button, .woocommerce button.button, .woocommerce #respond input#submit, #commentform input#submit{
+  box-shadow: none !important;
+}
+.contact-us a, .pagemore a, .serv-btn a, .woocommerce ul.products li.product .button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce a.button, .woocommerce button.button, .woocommerce #respond input#submit, #commentform input#submit{
+  border-radius: 70px 105px 0 70px;
+}
+.header-top {
+    background: rgba(0, 0, 0, 0) linear-gradient(90deg, #f9755c 20%, #000 15%) repeat scroll 0 0;
+}
+.woocommerce-message{
+  border-top-color:#f9755c;
+}
+.woocommerce span.onsale, nav.woocommerce-MyAccount-navigation ul li, .postsec-list .search-form input.search-submit, #button, .tagcloud a:hover, .contact-us a, .pagemore a, .serv-btn a, .woocommerce ul.products li.product .button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce a.button, .woocommerce button.button, .woocommerce #respond input#submit, #commentform input#submit{
+  background-image: linear-gradient(to right, #f9755c , #fca45e);
+}
+.contact-us a:hover, .pagemore a:hover, .serv-btn a:hover, .woocommerce ul.products li.product .button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, #commentform input#submit:hover{
+  background: #f9755c;
+}
+/*slider*/
+.slidesection{
+  background-color: #000;
+  position: relative;
+}
+.slider-box{
+  text-align: right;
+  left: 50% !important;
+  right: 0 !important;
+  background-image: linear-gradient(to right, rgba(252, 164, 94, 0.8), rgba(249, 117, 92, 0.8));
+  padding: 10em 11em 4em 10em;
+  border-radius: 50% 50% 0 50%;
+  position: absolute;
+  
+ bottom: 0;
+ width: auto;
+ height: 100%;
+}
+.slider-content{
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  right: 10%;
+  left: 20% ;
+}
+.owl-carousel {
+	display: block;
+}
+.catwrapslider{
+  width:100%; 
+  position:relative; 
+  box-sizing:border-box;
+}
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  height: fit-content;
+  opacity: 0.7;
+}
+.catwrapslider .owl-controls{ 
+  position: absolute; 
+  top: 50%;    
+  right:auto; 
+  left:auto; 
+  width:100%;
+}
+.catwrapslider .owl-prev, 
+.catwrapslider .owl-next {
+  border: none !important;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  bottom:15px; 
+  width:22px; 
+  height:22px; 
+  font-size:40px; 
+  right:0;
+  background: none;
+  outline: none;
+}
+.catwrapslider .owl-prev{
+  left:10px;
+}
+.catwrapslider .owl-next{ 
+  right:10px;
+}
+button.owl-prev span,
+button.owl-next span{
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  color: #fff;
+  font-size: 50px;
+}
+.owl-prev,
+.owl-next {
+  border: solid 2px #fff;
+  padding: 18px;
+}
+.catwrapslider{ 
+  height:auto;
+}
+.slider-box h3 {
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 20px 0 30px 0;
+  font-weight: 700;
+}
+.slider-box p {
+  color: #fff;
+  font-size: 16px;
+}
+.pagemore {
+  margin: 30px 0;
+}
+.slider-box span{
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #99cc03;
+}
+
+/*service*/
+#services_section{
+  padding: 3em 0;
+}
+.pagecontent {
+  position: relative;
+  box-shadow: none;
+}
+#services_section .ser-img img{
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+#services_section .text-inner-box {
+  position: absolute;
+  overflow: hidden;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  text-align: center;
+  background-image: linear-gradient(to right, rgba(249, 118, 92, 0.8), rgba(255, 174, 95, 0.8));
+  border-radius: 0 0 0 50px;
+  padding: 0;
+}
+#services_section .text-inner-box h3 a{
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  padding: 10px;
+  display: inline-block;
+}
+.thumbbx img, .thumbbx, .serv-image{
+  height:auto;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0 57px 0 57px;
+}
+.thumbbx{
+  padding: 0;
+  background: #000 !important;
+}
+.thumbbx img{
+  opacity: 0.8;
+}
+.content-inner-box span, #services_section span{
+  color: #f9755c;
+  font-weight: 700;
+}
+#services_section h2{
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 8px 0 35px 0;
+}
+.listarticle, aside.widget{
+  border-left:5px solid #f9755c ;
+  border-right: 5px solid #fca45e;
+}
+.pagecontent img{
+  height: 300px;
+  object-fit: cover;
+}
+/*footer*/
+
+/* Mobile Portrait View */
+@media screen and (max-width:767px) {
+  .slider-box h3, .slider-box p{
+    display: none;
+  }
+  .slider-box{
+    padding: 0 !important;
+    background: none !important;
+    text-align: center !important;
+    left: 10% !important;
+    right: 10% !important;
+  }
+}
+@media screen and (min-width:767px) and (max-width:999px){
+  .slider-box p{
+    display: none;
+  }
+  .slider-box h3{
+    font-size:25px;
+  }
+  .slider-box{
+    padding: 45px !important;
+  }
+  #services_section .text-inner-box h3 a{
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 1000px){
+  .alignwide{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .toggle-nav button{
+    border-color: #fff !important;
+    color: #fff !important;
+  }
+  .admin-bar #mySidenav{
+    margin-top:42px;
+  }
+}
+@media screen and (min-width:1000px) and (max-width:1024px){
+ .slider-box{
+    padding: 2em 5em 0em 1em;
+  }
+}
