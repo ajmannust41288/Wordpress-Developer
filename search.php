@@ -1,75 +1,43 @@
 <?php
 /**
- * The template for displaying search results pages
+ * The template for displaying search results pages.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package shopping-ecommerce-wp
+ * @package Astra
+ * @since 1.0.0
  */
 
-get_header();
-?>
-<?php
-    $sidebar_layout = get_theme_mod('shopping_ecommerce_wp_sidebar_layout_section', 'right');
-    if ($sidebar_layout == 'left') {
-        $sidebar_layout = 'has-left-sidebar';
-    } elseif ($sidebar_layout == 'right') {
-        $sidebar_layout = 'has-right-sidebar';
-    } elseif ($sidebar_layout == 'no') {
-        $sidebar_layout = 'no-sidebar';
-    }
-?>
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-	<!-- Page Breadcrumb Start -->
-    <?php  shopping_ecommerce_wp_breadbrumb(); ?>
-  	<!-- Page Breadcrumb Ends -->
+get_header(); ?>
 
-	<div class="sp-100 bg-w">
-        <div class="container">
-            <div class="row <?php echo esc_attr($sidebar_layout); ?>">
-                <div class="col-lg-8">
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
 
-					<header class="page-header">
-						<h1 class="page-title">
-							<?php
-							printf( esc_html__( 'Search Results for: %s', 'shopping-ecommerce-wp' ), '<span>' . get_search_query() . '</span>' );
-							?>
-						</h1>
-					</header> 
-					<?php if ( have_posts() ) : ?>
+	<?php get_sidebar(); ?>
 
-						<?php while ( have_posts() ) : the_post(); ?>
-							<?php get_template_part( 'template-parts/content', get_post_type() ); ?>
-						<?php endwhile; ?>
+<?php endif ?>
 
-						<div class="row">
-	                        <div class="col-12 text-center">
-	                            <div class="pagination mt-5">
-	                                <?php echo paginate_links(); ?>
-	                            </div>
-	                        </div>
-	                    </div>
-						
+	<div id="primary" <?php astra_primary_class(); ?>>
 
-					<?php else : ?>
+		<?php astra_primary_content_top(); ?>
 
-						<?php get_template_part( 'template-parts/content', 'none' ); ?>
+		<?php astra_archive_header(); ?>
 
-					<?php endif;?>
+		<?php astra_content_loop(); ?>		
 
-				</div>
+		<?php astra_pagination(); ?>
 
-					<?php
-		        	if (($sidebar_layout == 'has-left-sidebar') || ($sidebar_layout == 'has-right-sidebar')) { ?>
-						<div class="col-lg-4">
-							<aside class="sidebar mt-5 mt-lg-0">
-	                        	<?php get_sidebar(); ?>
-	                    	</aside>
-						</div>
-					<?php } ?>
-			</div> 
-		</div> 
-	</section>
+		<?php astra_primary_content_bottom(); ?>
 
-<?php
-get_footer();
+	</div><!-- #primary -->
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>

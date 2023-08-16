@@ -1,73 +1,39 @@
 <?php
 /**
- * The template for displaying all single posts
+ * The template for displaying all single posts.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package shopping-ecommerce-wp
+ * @package Astra
+ * @since 1.0.0
  */
 
-get_header();
-?>
-<?php
-    $sidebar_layout = get_theme_mod('shopping_ecommerce_wp_sidebar_layout_section', 'right');
-    if ($sidebar_layout == 'left') {
-        $sidebar_layout = 'has-left-sidebar';
-    } elseif ($sidebar_layout == 'right') {
-        $sidebar_layout = 'has-right-sidebar';
-    } elseif ($sidebar_layout == 'no') {
-        $sidebar_layout = 'no-sidebar';
-    }
-?>
-    <!-- Page Breadcrumb Start -->
-    <?php  shopping_ecommerce_wp_breadbrumb(); ?>
-    <!-- Page Breadcrumb Ends -->
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-    <?php
-    if ( have_posts() ) : ?>
+get_header(); ?>
 
-	<!-- blog detail start-->
-    <div class="sp-100 bg-w">
-        <div class="container">
-            <div class="row <?php echo esc_attr($sidebar_layout); ?>">
-                
-                <?php if( class_exists( 'WooCommerce' ) && is_product() ){ ?>
-                        <div class="col-lg-12">
-                <?php } else if(is_active_sidebar( 'main-sidebar' )){ ?>
-                        <div class="col-lg-8">
-                <?php } else { ?>
-                    <div class="col-lg-12">
-                <?php } ?>
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
 
+	<?php get_sidebar(); ?>
 
+<?php endif ?>
 
-                    <?php while ( have_posts() ) : the_post(); shopping_ecommerce_wp_set_post_view(); ?>
-						<?php get_template_part( 'template-parts/content', 'single' ); 
-						if ( (comments_open() || '0' != get_comments_number()) && class_exists( 'WooCommerce') && !is_product() ) :
-						comments_template(); 
-						endif;?>
-						
-					<?php endwhile; ?>
+	<div id="primary" <?php astra_primary_class(); ?>>
 
-                </div>
-                
-                    <?php
-                    if (($sidebar_layout == 'has-left-sidebar') || ($sidebar_layout == 'has-right-sidebar') && class_exists( 'WooCommerce') && !is_product() && is_active_sidebar( 'main-sidebar' )) { ?>
-                        <div class="col-lg-4">
-    	                    <aside class="sidebar mt-5 mt-lg-0">
-    	                        <?php get_sidebar(); ?>
-    	                    </aside>
-                    	</div>
-                    <?php } ?>    
-                
-            </div>
-        </div>
-    </div>
-    <!-- blog detail ends-->
+		<?php astra_primary_content_top(); ?>
 
-<?php 	
-endif;
-?>		
+		<?php astra_content_loop(); ?>
 
-<?php
-get_footer();
+		<?php astra_primary_content_bottom(); ?>
+
+	</div><!-- #primary -->
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>
