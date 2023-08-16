@@ -1,87 +1,43 @@
 <?php
 /**
- * The template for displaying archive pages
+ * The template for displaying archive pages.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package shopping-ecommerce-wp
+ * @package Astra
+ * @since 1.0.0
  */
 
-get_header();
-?>
-<?php
-    $sidebar_layout = get_theme_mod('shopping_ecommerce_wp_sidebar_layout_section', 'right');
-    if ($sidebar_layout == 'left') {
-        $sidebar_layout = 'has-left-sidebar';
-    } elseif ($sidebar_layout == 'right') {
-        $sidebar_layout = 'has-right-sidebar';
-    } elseif ($sidebar_layout == 'no') {
-        $sidebar_layout = 'no-sidebar';
-    }
-?>
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-	<!-- Page Breadcrumb Start -->
-    <?php  shopping_ecommerce_wp_breadbrumb(); ?>
-  	<!-- Page Breadcrumb Ends -->
+get_header(); ?>
 
-	<div class="sp-100 bg-w">
-        <div class="container">
-            <div class="row <?php echo esc_attr($sidebar_layout); ?>">
-            	<?php 
-            	if( is_active_sidebar( 'main-sidebar' )) {
-					echo '<div class="col-lg-8">';
-				}
-				else{
-					echo '<div class="col-lg-12">';
-				}?>
-                
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
 
-					<header class="page-header">
-						<?php
-						if ( have_posts() ) :
-							the_archive_title( '<h1 class="page-title">', '</h1>' );
-							the_archive_description( '<div class="archive-description">', '</div>' );
-						else :
-							printf( '<h1 class="page-title">%1$s</h1>', esc_html__( 'Nothing Found', 'shopping-ecommerce-wp' ) );
-						endif;
-						?>
-					</header><!-- .page-header -->
+	<?php get_sidebar(); ?>
 
-					<?php if ( have_posts() ) : ?>
+<?php endif ?>
 
-						<?php while ( have_posts() ) : the_post(); ?>
-							<?php get_template_part( 'template-parts/content', get_post_type() ); ?>
-						<?php endwhile; ?>
+	<div id="primary" <?php astra_primary_class(); ?>>
 
-						<div class="row">
-	                        <div class="col-12 text-center">
-	                            <div class="pagination mt-5">
-	                                <?php echo wp_kses_post(paginate_links()); ?>
-	                            </div>
-	                        </div>
-	                    </div>
-						
+		<?php astra_primary_content_top(); ?>
 
-					<?php else : ?>
+		<?php astra_archive_header(); ?>
 
-						<?php get_template_part( 'template-parts/content', 'none' ); ?>
+		<?php astra_content_loop(); ?>
 
-					<?php endif;?>
+		<?php astra_pagination(); ?>
 
-				</div>
-				
-				<?php
-		        if (($sidebar_layout == 'has-left-sidebar') || ($sidebar_layout == 'has-right-sidebar') && is_active_sidebar( 'main-sidebar' )) { ?>
-					<div class="col-lg-4">
-						<aside class="sidebar mt-5 mt-lg-0">
-                        	<?php get_sidebar(); ?>
-                    	</aside>
-					</div>
-				<?php } ?>
-				
-			</div> 
-		</div> 
-	</div>
+		<?php astra_primary_content_bottom(); ?>
 
-<?php
-get_footer();
+	</div><!-- #primary -->
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>
