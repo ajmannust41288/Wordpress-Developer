@@ -1,87 +1,60 @@
 <?php
 /**
- * The template for displaying archive pages
+ * The template for displaying archive pages.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package shopping-ecommerce-wp
+ * @package ceylonthemes
+ * @subpackage eCommerce WP
+ * @since 1.0.0
  */
 
-get_header();
-?>
-<?php
-    $sidebar_layout = get_theme_mod('shopping_ecommerce_wp_sidebar_layout_section', 'right');
-    if ($sidebar_layout == 'left') {
-        $sidebar_layout = 'has-left-sidebar';
-    } elseif ($sidebar_layout == 'right') {
-        $sidebar_layout = 'has-right-sidebar';
-    } elseif ($sidebar_layout == 'no') {
-        $sidebar_layout = 'no-sidebar';
-    }
+get_header(); 
 ?>
 
-	<!-- Page Breadcrumb Start -->
-    <?php  shopping_ecommerce_wp_breadbrumb(); ?>
-  	<!-- Page Breadcrumb Ends -->
-
-	<div class="sp-100 bg-w">
-        <div class="container">
-            <div class="row <?php echo esc_attr($sidebar_layout); ?>">
-            	<?php 
-            	if( is_active_sidebar( 'main-sidebar' )) {
-					echo '<div class="col-lg-8">';
-				}
-				else{
-					echo '<div class="col-lg-12">';
-				}?>
-                
-
-					<header class="page-header">
-						<?php
-						if ( have_posts() ) :
-							the_archive_title( '<h1 class="page-title">', '</h1>' );
-							the_archive_description( '<div class="archive-description">', '</div>' );
-						else :
-							printf( '<h1 class="page-title">%1$s</h1>', esc_html__( 'Nothing Found', 'shopping-ecommerce-wp' ) );
-						endif;
-						?>
-					</header><!-- .page-header -->
-
-					<?php if ( have_posts() ) : ?>
-
-						<?php while ( have_posts() ) : the_post(); ?>
-							<?php get_template_part( 'template-parts/content', get_post_type() ); ?>
-						<?php endwhile; ?>
-
-						<div class="row">
-	                        <div class="col-12 text-center">
-	                            <div class="pagination mt-5">
-	                                <?php echo wp_kses_post(paginate_links()); ?>
-	                            </div>
-	                        </div>
-	                    </div>
-						
-
-					<?php else : ?>
-
-						<?php get_template_part( 'template-parts/content', 'none' ); ?>
-
-					<?php endif;?>
-
-				</div>
-				
+<div id="inner-content-wrapper" class="container page-section">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            <div class="archive-blog-wrapper">
 				<?php
-		        if (($sidebar_layout == 'has-left-sidebar') || ($sidebar_layout == 'has-right-sidebar') && is_active_sidebar( 'main-sidebar' )) { ?>
-					<div class="col-lg-4">
-						<aside class="sidebar mt-5 mt-lg-0">
-                        	<?php get_sidebar(); ?>
-                    	</aside>
-					</div>
-				<?php } ?>
-				
-			</div> 
-		</div> 
-	</div>
+				if ( have_posts() ) : ?>
+
+					<?php
+					/* Start the Loop */
+					while ( have_posts() ) : the_post();
+
+						/*
+						 * Include the Post-Format-specific template for the content.
+						 * If you want to override this in a child theme, then include a file
+						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+						 */
+						get_template_part( 'template-parts/content', get_post_format() );
+
+					endwhile;
+
+				else :
+
+					get_template_part( 'template-parts/content', 'none' );
+
+				endif; ?>
+			</div>
+			<?php  
+			/**
+			* Hook - ecommerce_wp_action_pagination.
+			*
+			* @hooked ecommerce_wp_pagination 
+			*/
+			do_action( 'ecommerce_wp_action_pagination' ); 
+			?>
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+	<?php  
+	if ( ecommerce_wp_is_sidebar_enable() ) {
+		get_sidebar();
+	}
+	?>
+</div><!-- .wrapper -->
 
 <?php
 get_footer();

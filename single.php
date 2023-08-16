@@ -1,73 +1,47 @@
 <?php
 /**
- * The template for displaying all single posts
+ * The template for displaying all single posts.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package shopping-ecommerce-wp
+ * @package ceylonthemes
+ * @subpackage eCommerce WP
+ * @since 1.0.0
  */
 
-get_header();
+get_header(); 
 ?>
-<?php
-    $sidebar_layout = get_theme_mod('shopping_ecommerce_wp_sidebar_layout_section', 'right');
-    if ($sidebar_layout == 'left') {
-        $sidebar_layout = 'has-left-sidebar';
-    } elseif ($sidebar_layout == 'right') {
-        $sidebar_layout = 'has-right-sidebar';
-    } elseif ($sidebar_layout == 'no') {
-        $sidebar_layout = 'no-sidebar';
-    }
-?>
-    <!-- Page Breadcrumb Start -->
-    <?php  shopping_ecommerce_wp_breadbrumb(); ?>
-    <!-- Page Breadcrumb Ends -->
 
-    <?php
-    if ( have_posts() ) : ?>
+<div id="inner-content-wrapper" class="container page-section">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+			<?php
+			while ( have_posts() ) : the_post();
 
-	<!-- blog detail start-->
-    <div class="sp-100 bg-w">
-        <div class="container">
-            <div class="row <?php echo esc_attr($sidebar_layout); ?>">
-                
-                <?php if( class_exists( 'WooCommerce' ) && is_product() ){ ?>
-                        <div class="col-lg-12">
-                <?php } else if(is_active_sidebar( 'main-sidebar' )){ ?>
-                        <div class="col-lg-8">
-                <?php } else { ?>
-                    <div class="col-lg-12">
-                <?php } ?>
+				get_template_part( 'template-parts/content', 'single' );
 
+				/**
+				* Hook ecommerce_wp_action_post_pagination
+				*  
+				* @hooked ecommerce_wp_post_pagination 
+				*/
+				do_action( 'ecommerce_wp_action_post_pagination' );
 
+				// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
 
-                    <?php while ( have_posts() ) : the_post(); shopping_ecommerce_wp_set_post_view(); ?>
-						<?php get_template_part( 'template-parts/content', 'single' ); 
-						if ( (comments_open() || '0' != get_comments_number()) && class_exists( 'WooCommerce') && !is_product() ) :
-						comments_template(); 
-						endif;?>
-						
-					<?php endwhile; ?>
+			endwhile; // End of the loop.
+			?>
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
-                </div>
-                
-                    <?php
-                    if (($sidebar_layout == 'has-left-sidebar') || ($sidebar_layout == 'has-right-sidebar') && class_exists( 'WooCommerce') && !is_product() && is_active_sidebar( 'main-sidebar' )) { ?>
-                        <div class="col-lg-4">
-    	                    <aside class="sidebar mt-5 mt-lg-0">
-    	                        <?php get_sidebar(); ?>
-    	                    </aside>
-                    	</div>
-                    <?php } ?>    
-                
-            </div>
-        </div>
-    </div>
-    <!-- blog detail ends-->
-
-<?php 	
-endif;
-?>		
-
+	<?php  
+	if ( ecommerce_wp_is_sidebar_enable() ) {
+		get_sidebar();
+	}
+	?>
+</div><!-- .page-section -->
 <?php
 get_footer();

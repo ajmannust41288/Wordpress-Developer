@@ -1,32 +1,33 @@
 <?php
 /**
- * The template for displaying 404 pages (not found)
+ * The template for displaying 404 pages (not found).
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package shopping-ecommerce-wp
+ * @package ceylonthemes
+ * @subpackage eCommerce WP
+ * @since 1.0.0
  */
 
-get_header();
-?>
+get_header(); ?>
+<div class="container page-section">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-    <!-- Page Breadcrumb Start -->
-    <?php  shopping_ecommerce_wp_breadbrumb(); ?>
-    <!-- Page Breadcrumb Ends -->
+			<section class="error-404 not-found">
+				<header class="page-header">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/images/404.png' ); ?>" alt="<?php esc_attr_e( '404', 'ecommerce-wp' ); ?>">
+				</header><!-- .page-header -->
 
-	<section class="page-404">
-        <div class="container">
-            <div class="page-404-inner">
-                <h1><?php echo esc_html__('404','shopping-ecommerce-wp'); ?></h1>
-                <h3><i class="fa fa-exclamation-triangle"></i><?php echo esc_html__( 'Oops! Page Not Found', 'shopping-ecommerce-wp' ); ?></h3>
-                <p><?php echo esc_html__( 'Sorry but the page you are looking for is not found. Please make sure you have typed the correct URL.', 'shopping-ecommerce-wp' ); ?></p>
-                <div class="btn-group">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn"><?php echo esc_html__( 'Back To Home','shopping-ecommerce-wp'); ?> 
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+				<div class="page-content">
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try a search?', 'ecommerce-wp' ); ?></p>
 
+					<?php get_search_form(); ?>
+				</div><!-- .page-content -->
+			</section><!-- .error-404 -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+</div>
 <?php
 get_footer();

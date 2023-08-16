@@ -1,145 +1,83 @@
 <?php
 /**
- * The template for displaying the footer
- *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package shopping-ecommerce-wp
+ * @package ceylonthemes
+ * @subpackage eCommerce WP
+ * @since 1.0.0
  */
+    $options = ecommerce_wp_get_theme_options();
+	$copyright_text = $options['copyright_text'];
 
 ?>
-</div><!-- #main -->
+</div><!-- #content -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo" style="background-image:url('<?php echo esc_attr($options['footer_image']); ?>')" >
 
-<?php 
-$display_copyright = get_theme_mod('shopping_ecommerce_wp_enable_cpright_footer_section',true);
-$enable_scrolltop = get_theme_mod('shopping_ecommerce_wp_enable_scroll_top',true);
-$copyright_content = get_theme_mod('shopping_ecommerce_wp_cpright_footer_section','Powered by WordPress');
-$display_logo = get_theme_mod('shopping_ecommerce_wp_enable_logo_footer_section',true);
-$logo_image_url = get_theme_mod('shopping_ecommerce_wp_logo_footer_section','');
-
-$footer_title = get_theme_mod('shopping_ecommerce_wp_title_footer_section','TAKE OWNERSHIP OF YOUR BRAND');
-$footer_description = get_theme_mod('shopping_ecommerce_wp_description_footer_section','Finally, a partner that handles the heavy lifting for you.');
-$display_fsocial = get_theme_mod('shopping_ecommerce_wp_enable_social_footer_section',true);
-$facebook_link = get_theme_mod('shopping_ecommerce_wp_social_fb_button_link_footer','#');
-$instagram_link = get_theme_mod('shopping_ecommerce_wp_social_insta_button_link_footer','#');
-$linkedin_link = get_theme_mod('shopping_ecommerce_wp_social_lkdn_button_link_footer','#');
-$social_icon_target = get_theme_mod('shopping_ecommerce_wp_enable_new_tab_footer_section',true);
-$separator_title = get_theme_mod('shopping_ecommerce_wp_separator_title_footer_section','Start a conversation');
-?>
-
-	<footer class="footer footer-one">
-        <div class="foot-top">
-            <div class="container">
-                <div class="row">
-                  <div class="col-md-6">
-                    <?php if($display_logo && $logo_image_url) { ?>
-                    <div class="logo">
-                      
-                      <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                        <img src="<?php echo esc_url($logo_image_url); ?>" alt="logo" class="img-fluid">
-                      </a>
-
-                    </div>
-                    <?php } ?>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <h2><?php echo esc_html($footer_title); ?></h2>
-                    <p class="desc"><?php echo esc_html($footer_description); ?></p>
-                  </div>
-                  <div class="col-md-8 menu-link">
-                    <?php if(has_nav_menu('footer-menu')) { ?>
-                      <?php
-                      wp_nav_menu(
-                          array(
-                              'theme_location' => 'footer-menu',
-                              'menu_id'        => 'footer-menu',
-                          )
-                      );
-                      ?>
-                  <?php } ?>
-                  </div>
-                  <div class="col-md-4 social-icon text-right">
-                    <?php if($display_fsocial) { ?>
-                    <ul>
-                      <?php if($facebook_link != "") { ?>
-                      <li>
-                        <a href="<?php echo esc_url($facebook_link); ?>" <?php if($social_icon_target) { ?> target="_blank" <?php } ?>><i class="fa fa-facebook-official"></i></a>
-                      </li>
-                      <?php } ?>
-
-                      <?php if($instagram_link != "") { ?>
-                      <li>
-                        <a href="<?php echo esc_url($instagram_link); ?>" <?php if($social_icon_target) { ?> target="_blank" <?php } ?>><i class="fa fa-instagram"></i></a>
-                      </li>
-                      <?php } ?>
-
-                      <?php if($linkedin_link != "") { ?>
-                      <li>
-                        <a href="<?php echo esc_url($linkedin_link); ?>" <?php if($social_icon_target) { ?> target="_blank" <?php } ?>><i class="fa fa-linkedin-square"></i></a>
-                      </li>
-                      <?php } ?>
-                    </ul>
-                    <?php } ?>
-                  
-                  <?php if($display_copyright) { ?>
-                    <div class="footer-credits">
-
-                        <p class="footer-copyright">&copy;
-                          <?php
-                          echo esc_html(date_i18n(
-                            /* translators: Copyright date format, see https://www.php.net/manual/datetime.format.php */
-                            _x( 'Y', 'copyright date format', 'shopping-ecommerce-wp' )
-                          ));
-                          ?>
-                          <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-                        </p><!-- .footer-copyright -->
-
-                        <p class="powered-by">
-                          <?php if($copyright_content == ""){ ?>
-                          <a href="<?php echo esc_url( __( 'https://67f0e3d6.ajportfolio.pages.dev', 'Shopping store' ) ); ?>">
-                            <?php esc_html_e( 'Powered by Ajman khan', 'SHopping website' ); ?>
-                          </a>
-                        <?php } else { ?>
-                          <?php echo esc_html($copyright_content); ?>
-                        <?php } ?>
-                        </p><!-- .powered-by -->
-
-                    </div><!-- .footer-credits -->
-                  <?php } ?>  
-
-                  </div>
-                  <div class="col-md-12">
-                    <h1 class="heading-con">
-                      <?php echo esc_html($separator_title); ?>
-                    </h1>
-                  </div>
-                  
-                  <?php if ( is_active_sidebar( 'footer-widgets' ) ) { ?>
-                  
-                    <div class="footer-top">
-                        <div class="row clearfix">
-                            <?php dynamic_sidebar('footer-widgets'); ?>      
-                        </div>
-                    </div>
-                  
-                  <?php } ?>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ====== Go to top ====== -->
-    <?php if($enable_scrolltop) { ?>
-    <a id="c-scroll" title="Go to top" href="javascript:void(0)">
-      TOP
-    </a>
-    <?php } ?>
-    
-</div><!-- #page -->
-
+	<div style="background-color:<?php echo esc_attr($options['footer_bg_color']); ?>" >	
+	
+		<div class="container">
+			<div class="row">
+				<?php require get_template_directory() . '/inc/footer-widgets.php' ;?>		
+			</div>		
+		</div>
+	
+	
+		<div class="site-info">
+		
+			<div class="container">
+			
+			<?php 
+			if ($options['social_whatsapp_link'] =='' && $options['social_instagram_link'] =='' && $options['social_youtube_link'] =='' && $options['social_linkdin_link'] =='' && $options['social_twitter_link'] =='' && $options['social_facebook_link'] =='' ) {
+			//do nothing
+            } else {
+			?>
+			
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 footer-social-container">
+					 
+					<div id="top-social-right" class="footer_social_links">
+					  <ul>
+						<?php if ($options['social_whatsapp_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_whatsapp_link']); ?>" class="social_links_header_4 whatsapp" target="_blank"> <span class="ts-icon"> <i class="fa fa-whatsapp"></i> </a></li> <?php } ?>
+						<?php if ($options['social_pinterest_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_pinterest_link']); ?>" class="social_links_header_6 pinterest" target="_blank"> <span class="ts-icon"> <i class="fa fa-pinterest"></i> </a></li> <?php } ?>            
+						<?php if ($options['social_instagram_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_instagram_link']); ?>" class="social_links_header_2 instagram" target="_blank"> <span class="ts-icon"> <i class="fa fa-instagram"></i> </a></li> <?php } ?>
+						<?php if ($options['social_youtube_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_youtube_link']); ?>" class="social_links_header_3 youtube" target="_blank"> <span class="ts-icon"> <i class="fa fa-youtube"></i> </a></li> <?php } ?>
+						<?php if ($options['social_linkdin_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_linkdin_link']); ?>" class="social_links_header_5 linkedin" target="_blank"> <span class="ts-icon"> <i class="fa fa-linkedin"></i> </a></li> <?php } ?>
+						<?php if ($options['social_twitter_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_twitter_link']); ?>" class="social_links_header_1 twitter" target="_blank"> <span class="ts-icon"> <i class="fa fa-twitter"></i> </a></li> <?php } ?>
+						<?php if ($options['social_facebook_link'] !='') { ?><li> <a href="<?php echo esc_url($options['social_facebook_link']); ?>" class="social_links_header_0 facebook" target="_blank"> <span class="ts-icon"> <i class="fa fa-facebook"></i> </a></li> <?php } ?>
+					  </ul>
+					</div>
+					
+				</div>
+			</div>
+			
+			<?php } ?>
+	
+			<div class="row">
+			<div class="col-sm-12 col-xs-12"> 
+			<span>
+				<?php
+					// echo '<span>'.ecommerce_wp_santize_allowed_html( $copyright_text ).'</span>'; 
+					echo '<a href="ceylonthemes.com">'.esc_html( $copyright_text ).'</a>'; 
+				?>
+			</span>
+			</div>
+			
+			</div>
+			
+			</div><!-- .container -->
+		</div><!-- .site-info -->
+	
+	
+			<?php		
+			if ( true === $options['scroll_top_visible'] ) :
+			?><div class="backtotop"><?php echo ecommerce_wp_get_svg( array( 'icon' => 'up' ) ); ?></div>
+			<?php endif; ?>
+	
+	</div> <!-- footer inner layer--> 
+	
+</footer>
+<div class="popup-overlay"></div>
+		
+		
 <?php wp_footer(); ?>
 
 </body>
